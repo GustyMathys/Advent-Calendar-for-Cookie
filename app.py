@@ -131,18 +131,21 @@ if st.session_state.open_day:
     day = st.session_state.open_day
     entry = messages.get(day)
 
-    with st.expander(f"Day {day} — Your surprise 💜", expanded=True):
+    with st.expander(f"Day {day} — Today Momma Angel Boo 💜", expanded=True):
         st.write(entry["message"])
 
         # Image
         if entry["image"]:
             try:
-                if entry["image"].startswith("http"):
-                    st.image(entry["image"])
+                url = entry["image"].strip()  # removes spaces or hidden chars
+                if url.startswith("http"):
+                    st.image(url, use_column_width=True)
                 else:
-                    st.image(Image.open(entry["image"]))
-            except:
+                    st.image(Image.open(url), use_column_width=True)
+            except Exception as e:
                 st.write("(Couldn't load image)")
+                st.write(e)
+
 
         # Audio
         if entry["audio"]:
@@ -164,6 +167,7 @@ if st.session_state.open_day:
 # ---------------------------------------------------------
 st.write("---")
 st.markdown("<div style='color:white;opacity:0.7;text-align:center;font-size:14px;'>FOR COOKIE OLIVIA BOO AND MOMMA ANGEL BOO I LOVE WITH ALL MY HEART  </div>", unsafe_allow_html=True)
+
 
 
 
