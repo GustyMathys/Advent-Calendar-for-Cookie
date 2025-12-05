@@ -135,19 +135,23 @@ if st.session_state.open_day:
         st.write(entry["message"])
 
         # Image
+        # ---- ALWAYS LOAD IMAGES FROM GITHUB /assets FOLDER ----
+
         if entry["image"]:
+            # Your GitHub raw folder
+            GITHUB_ASSETS = "https://raw.githubusercontent.com/<YOUR_USERNAME>/<YOUR_REPO>/main/assets/"
+        
+            # Build full URL for the image
+            image_url = GITHUB_ASSETS + entry["image"]
+        
             try:
-                url = str(entry["image"]).strip()
-    
-            # Any http/https link is treated as URL
-                if url.lower().startswith(("http://", "https://")):
-                    st.image(url, use_column_width=True)
-                else:
-                    img = Image.open(url)
-                    st.image(img, use_column_width=True)
-    
+                st.image(image_url)
             except Exception as e:
-                st.write("(Couldn't load image)")
+                st.error(f"Couldn't load image from GitHub: {image_url}")
+                st.write(e)
+
+    
+            
         # Audio
         if entry["audio"]:
             try:
@@ -168,6 +172,7 @@ if st.button("Close"):
 # ---------------------------------------------------------
 st.write("---")
 st.markdown("<div style='color:white;opacity:0.7;text-align:center;font-size:14px;'>FOR COOKIE OLIVIA BOO AND MOMMA ANGEL BOO I LOVE WITH ALL MY HEART  </div>", unsafe_allow_html=True)
+
 
 
 
