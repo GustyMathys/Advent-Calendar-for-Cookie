@@ -173,26 +173,27 @@ def display_image_entry(url):
 
     st.error("❌ Completely failed to load the image.")
 
-        # Audio
-        if entry["audio"]:
-            try:
-                if entry["audio"].startswith("http"):
+    # Audio
+    if entry["audio"]:
+        try:
+            if entry["audio"].startswith("http"):
                     st.audio(entry["audio"])
-                else:
-                    with open(entry["audio"], "rb") as f:
-                        st.audio(f.read())
-            except:
-                st.write("(Couldn't load audio)")
+            else:
+                with open(entry["audio"], "rb") as f:
+                    st.audio(f.read())
+        except:
+            st.write("(Couldn't load audio)")
 
-        st.write("")
-        if st.button("Close"):
-            st.session_state.open_day = None
+    st.write("")
+    if st.button("Close"):
+        st.session_state.open_day = None
 
 # ---------------------------------------------------------
 # Footer
 # ---------------------------------------------------------
 st.write("---")
 st.markdown("<div style='color:white;opacity:0.7;text-align:center;font-size:14px;'>FOR COOKIE OLIVIA BOO AND MOMMA ANGEL BOO I LOVE WITH ALL MY HEART  </div>", unsafe_allow_html=True)
+
 
 
 
