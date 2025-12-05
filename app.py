@@ -141,7 +141,7 @@ if st.session_state.open_day:
 
         if entry["image"]:
         
-            GITHUB_ASSETS = "https://raw.githubusercontent.com/<YOUR_USERNAME>/<YOUR_REPO>/main/assets/"
+            GITHUB_ASSETS = "https://raw.githubusercontent.com/<GutsyMathys>/<Advent-Calendar-for-Cookie>/main/assets/"
         
             day_number = st.session_state.open_day
         
@@ -186,6 +186,7 @@ if st.button("Close"):
 # ---------------------------------------------------------
 st.write("---")
 st.markdown("<div style='color:white;opacity:0.7;text-align:center;font-size:14px;'>FOR COOKIE OLIVIA BOO AND MOMMA ANGEL BOO I LOVE WITH ALL MY HEART  </div>", unsafe_allow_html=True)
+
 
 
 
