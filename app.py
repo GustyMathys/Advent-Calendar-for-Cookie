@@ -68,13 +68,10 @@ import pandas as pd
 # Load Excel or CSV automatically
 file = "days.xlsx"  # or "days.csv"
 
-if file.endswith(".xlsx"):
-    df = pd.read_excel(file)
-else:
-    df = pd.read_csv(file)
+df = pd.read_excel("days.xlsx")
 
-# Standardize column names
-df.columns = [c.strip().lower() for c in df.columns]
+df.columns = ["day", "message", "image", "audio"]
+
 
 messages = {}
 
@@ -165,3 +162,4 @@ if st.session_state.open_day:
 # ---------------------------------------------------------
 st.write("---")
 st.markdown("<div style='color:white;opacity:0.7;text-align:center;font-size:14px;'>Made with 💜 for someone special — SOUR style</div>", unsafe_allow_html=True)
+
