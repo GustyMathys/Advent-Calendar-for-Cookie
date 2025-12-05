@@ -134,48 +134,23 @@ if st.session_state.open_day:
     with st.expander(f"Day {day} — Today Momma Angel Boo 💜", expanded=True):
         st.write(entry["message"])
 
-        # Image
-def display_image_entry(url):
-    st.write("🔍 Image debug for:", url)
-
-    if not url:
-        st.write("(No URL)")
-        return
-
-    # 1) Try Streamlit directly
-    try:
-        st.write("Trying: st.image(url)...")
-        st.image(url)
-        st.success("Loaded via st.image(url)")
-        return
-    except Exception as e:
-        st.error(f"Direct st.image error: {e}")
-
-    # 2) Try downloading manually
-    try:
-        st.write("Trying: requests.get...")
-        r = requests.get(url, timeout=10)
-        st.write("Status:", r.status_code)
-        st.write("Content-Type:", r.headers.get("content-type"))
-
-        if r.status_code == 200:
+    # Image
+    if entry["image"]:
             try:
-                img = Image.open(BytesIO(r.content))
-                st.image(img)
-                st.success("Loaded via requests → PIL")
-                return
+                url = str(entry["image"]).strip()
+
+        # Any http/https link is treated as URL
+                if url.lower().startswith(("http://", "https://")):
+                    st.image(url, use_column_width=True)
+                else:
+                    img = Image.open(url)
+                    st.image(img, use_column_width=True)
+
             except Exception as e:
-                st.error(f"PIL failed: {e}")
-        else:
-            st.error("Non-200 response")
-    except Exception as e:
-        st.error(f"Requests error: {e}")
-
-    st.error("❌ Completely failed to load the image.")
-
-# Audio
-if entry["audio"]:
-    try:
+                st.write("(Couldn't load image)")
+    # Audio
+    if entry["audio"]:
+        try:
         if entry["audio"].startswith("http"):
                 st.audio(entry["audio"])
         else:
@@ -193,6 +168,7 @@ if st.button("Close"):
 # ---------------------------------------------------------
 st.write("---")
 st.markdown("<div style='color:white;opacity:0.7;text-align:center;font-size:14px;'>FOR COOKIE OLIVIA BOO AND MOMMA ANGEL BOO I LOVE WITH ALL MY HEART  </div>", unsafe_allow_html=True)
+
 
 
 
