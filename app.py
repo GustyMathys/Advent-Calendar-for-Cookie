@@ -66,12 +66,10 @@ body {
 import pandas as pd
 
 # Load Excel or CSV automatically
-file = "days.xlsx"  # or "days.csv"
-
 df = pd.read_excel("days.xlsx")
 
+# Force correct column names since your file uses Column1, Column2, etc.
 df.columns = ["day", "message", "image", "audio"]
-
 
 messages = {}
 
@@ -162,4 +160,5 @@ if st.session_state.open_day:
 # ---------------------------------------------------------
 st.write("---")
 st.markdown("<div style='color:white;opacity:0.7;text-align:center;font-size:14px;'>Made with 💜 for someone special — SOUR style</div>", unsafe_allow_html=True)
+
 
