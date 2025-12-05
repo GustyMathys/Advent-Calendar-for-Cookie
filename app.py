@@ -65,24 +65,25 @@ body {
 
 import pandas as pd
 
-# Load Excel or CSV automatically
 df = pd.read_excel("days.xlsx")
 
-st.write("COLUMNS:", df.columns.tolist())
-st.write(df.head())
-
-# Force correct column names since your file uses Column1, Column2, etc.
-df.columns = ["day", "message", "image", "audio"]
+df = df.dropna(how="all")   # remove blank rows
 
 messages = {}
 
-for _, row in df.iterrows():
-    day = int(row["day"])
+for i, row in df.iterrows():
+    try:
+        day = int(row.iloc[0])
+    except:
+        st.write("Invalid day at row:", i, row)
+        continue
+
     messages[day] = {
-        "message": row["message"],
-        "image": str(row["image"]) if not pd.isna(row["image"]) else None,
-        "audio": str(row["audio"]) if not pd.isna(row["audio"]) else None,
+        "message": row.iloc[1],
+        "image": None if pd.isna(row.iloc[2]) else str(row.iloc[2]),
+        "audio": None if pd.isna(row.iloc[3]) else str(row.iloc[3]),
     }
+
 
 
 
@@ -163,6 +164,7 @@ if st.session_state.open_day:
 # ---------------------------------------------------------
 st.write("---")
 st.markdown("<div style='color:white;opacity:0.7;text-align:center;font-size:14px;'>Made with 💜 for someone special — SOUR style</div>", unsafe_allow_html=True)
+
 
 
 
