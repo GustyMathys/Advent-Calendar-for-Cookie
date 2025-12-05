@@ -131,7 +131,7 @@ if st.session_state.open_day:
     day = st.session_state.open_day
     entry = messages.get(day)
 
-    with st.modal(f"Day {day} — Your surprise 💜"):
+    with st.expander(f"Day {day} — Your surprise 💜", expanded=True):
         st.write(entry["message"])
 
         # Image
@@ -164,6 +164,7 @@ if st.session_state.open_day:
 # ---------------------------------------------------------
 st.write("---")
 st.markdown("<div style='color:white;opacity:0.7;text-align:center;font-size:14px;'>Made with 💜 for someone special — SOUR style</div>", unsafe_allow_html=True)
+
 
 
 
