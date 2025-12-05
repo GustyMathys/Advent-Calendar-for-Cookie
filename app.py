@@ -163,7 +163,8 @@ if st.session_state.open_day:
 # Footer
 # ---------------------------------------------------------
 st.write("---")
-st.markdown("<div style='color:white;opacity:0.7;text-align:center;font-size:14px;'>Made with 💜 for someone special — SOUR style</div>", unsafe_allow_html=True)
+st.markdown("<div style='color:white;opacity:0.7;text-align:center;font-size:14px;'>FOR COOKIE OLIVIA BOO AND MOMMA ANGEL BOO I LOVE WITH ALL MY HEART  </div>", unsafe_allow_html=True)
+
 
 
 
